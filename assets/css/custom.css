@@ -14,3 +14,29 @@
     color: black;
 }
 
+div{
+    font-size: 40px;
+    color: blue;
+}
+ 
+#padre_html_3 h1 { 
+    color: #000;
+    text-decoration: underline;
+}
+
+
+.success{
+    background-color: aquamarine;
+    color: #000;
+}
+
+.error{
+    background-color: red;
+    color: #fff;
+}
+
+.alert-primary {
+    color: #000;
+    background-color: #9c71cd;
+    border-color: #e7f160;
+}
