@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Curso Fullstack" />
+        <meta property="og:description" content="Mi curso de fullstack" />
+        <meta property="og:image" content="https://assets.bitdegree.org/online-learning-platforms/storage/media/2018/11/What-Is-A-Full-Stack-Developer-and-Everything-You-Need-to-Know-to-Start.jpg" />
+        <meta property="og:url" content="https://empireweb.store/" />
+        <meta property="og:site_name" content="Curso Fullstack" />
+
+        <title>  Mi plataforma fullstack</title>        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="./assets/css/custom.css" rel="stylesheet"> 
+
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="tienda.html">Tienda</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="tienda_vue.html">Tienda Vue</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="row" id="product-list">
+
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const productList = document.getElementById('product-list')
+
+                fetch('https://fakestoreapi.com/products')
+                .then(response => response.json() )
+                .then(products => { 
+
+                    console.log(products)
+                    products.forEach( product => {
+                        const card = document.createElement('div')
+                        card.className = 'col-md-4 mb-4';
+                        card.innerHTML = `
+                            <div class="card ">
+                                    <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                                    <div class="card-body">
+                                        <h5 class="card-title"> ${product.title} </h5>
+                                        <p class="card-text" style="font-size: 10px;"> ${product.description} </p>`
+                        if(product.price <20){
+                            card.innerHTML += `<a href="#" class="btn btn-info">Ver detalle</a>`;
+                        }else{
+                            card.innerHTML += `<a href="#" class="btn btn-primary">Ver detalle</a>`;
+                        }
+                        
+                        card.innerHTML +=`</div>           `;
+
+                        productList.appendChild(card)
+                    })
+                }).catch(error => console.log('Error: ', error) );
+            })
+            
+        </script>
+
+    </body>
+</html>
